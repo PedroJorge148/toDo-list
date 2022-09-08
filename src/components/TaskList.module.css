@@ -1,0 +1,65 @@
+.tasks {
+  margin: 6.4rem auto;
+  width: 73.6rem;
+}
+
+.tasksHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.tasksCreated strong {
+  color: var(--blue-500);
+  margin-right: 0.8rem;
+}
+
+.counter {
+  background: var(--gray-400);
+  border-radius: 10px;
+  padding: 2px 8px;
+  color: var(--gray-200);
+}
+
+.tasksDone strong {
+  color: var(--purple-500);
+  margin-right: 0.8rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  margin: 2.4rem auto;
+  border-top: 1px solid var(--gray-400);
+}
+
+.content img {
+  align-items: center;
+  justify-content: center;
+  margin-top: 6.4rem;
+  margin-bottom: 1.6rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.item {
+  background: var(--gray-500);
+  border: 1px solid var(--gray-400);
+  border-radius: 8px;
+  padding: 1.6rem;
+  display: flex;
+  gap: 1rem;
+  
+}
+
+.item input[type=checkbox]{
+  border-radius: 50%;
+  background: transparent;
+  border: 0;
+  
+}
+
