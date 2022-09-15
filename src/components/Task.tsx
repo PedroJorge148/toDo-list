@@ -6,19 +6,24 @@ interface TaskProps {
   id: number,
   done: boolean,
   content: string,
-  onDeleteTask: (id: number) => void
+  onDeleteTask: (id: number) => void,
+  onChangeCheckbox: (bool: boolean) => void
 }
 
-export function Task({id, done, content, onDeleteTask}:TaskProps) {
+export function Task({id, done, content, onDeleteTask, onChangeCheckbox}:TaskProps) {
 
   function handleDeleteTask() {
     onDeleteTask(id);
   }
 
+  function handleChangeCheckbox() {
+    onChangeCheckbox(done);
+  }
+
   return (
     <div className={styles.item}>                
       <div>
-        <input id={'task' + id} type="checkbox"  /> 
+        <input id={'task' + id} type="checkbox" onChange={handleChangeCheckbox}/> 
 
         <label htmlFor={'task' + id}>
           <p>{content}</p>

@@ -44,6 +44,14 @@ export function TaskList() {
     setTasks(newTasksWithoutDeletedOne);
   }
 
+  function handleChangeCheckbox(bool: boolean) {
+    if(bool =! bool) {
+      setDone(done + 1);
+    } else {
+      setDone(done - 1);
+    }
+  }
+
   return (
     <>
       <form onSubmit={handleCreateTask} className={styles.formNewTask}>
@@ -76,30 +84,37 @@ export function TaskList() {
           </header>
           
           <div className={styles.content}>
-            {tasks.map(task => {
-              return (
-                <Task 
-                  key={task.id}
-                  id={task.id}
-                  done={task.done}
-                  content={task.content}
-                  onDeleteTask={onDeleteTask}
-                />
-              )
-            })}
-          </div>
+            { tasks.length == 0 ? 
+              <>
+                <img src={clipboard}  />
 
-          {/* 
-          <div className={styles.empty}>
-            <img src={clipboard}  />
-
-            <div>
-              <strong>Você ainda não tem tarefas cadastradas</strong>
-              <p>Crie tarefas e organize seus itens a fazer </p>
-            </div>
+                <div>
+                  <strong>Você ainda não tem tarefas cadastradas</strong>
+                  <p>Crie tarefas e organize seus itens a fazer </p>
+                </div>
+              </> 
+              :
+              tasks.map(task => {
+                return (
+                  <Task 
+                    key={task.id}
+                    id={task.id}
+                    done={task.done}
+                    content={task.content}
+                    onDeleteTask={onDeleteTask}
+                    onChangeCheckbox={handleChangeCheckbox}
+                  />
+                )
+              })
             
+            }
           </div>
-          */}
+
+          
+          
+            
+            
+        
       </div>
     </>
   );
