@@ -7,7 +7,7 @@ interface TaskProps {
   done: boolean,
   content: string,
   onDeleteTask: (id: number) => void,
-  onChangeCheckbox: (bool: boolean) => void
+  onChangeCheckbox: (id: number) => void
 }
 
 export function Task({id, done, content, onDeleteTask, onChangeCheckbox}:TaskProps) {
@@ -17,13 +17,13 @@ export function Task({id, done, content, onDeleteTask, onChangeCheckbox}:TaskPro
   }
 
   function handleChangeCheckbox() {
-    onChangeCheckbox(done);
+    onChangeCheckbox(id);
   }
 
   return (
     <div className={styles.item}>                
       <div>
-        <input id={'task' + id} type="checkbox" onChange={handleChangeCheckbox}/> 
+        <input id={'task' + id} type="checkbox" onChange={handleChangeCheckbox} /> 
 
         <label htmlFor={'task' + id}>
           <p>{content}</p>

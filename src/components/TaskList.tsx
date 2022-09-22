@@ -5,14 +5,14 @@ import { Task } from "./Task";
 
 import styles from './TaskList.module.css';
 
+interface TaskProps {
+  id: number
+  content: string
+  done: boolean
+}
+
 export function TaskList() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      done: false,
-      content: 'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-    },
-  ]);
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
 
   const [taskContent, setTaskContent] = useState('');
 
@@ -23,8 +23,8 @@ export function TaskList() {
 
     const newTask = {
         id: tasks.length + 1,
+        content: taskContent,
         done: false,
-        content: taskContent
       };
 
     setTasks([...tasks, newTask]);
@@ -44,13 +44,22 @@ export function TaskList() {
     setTasks(newTasksWithoutDeletedOne);
   }
 
-  function handleChangeCheckbox(bool: boolean) {
-    if(bool =! bool) {
-      setDone(done + 1);
-    } else {
-      setDone(done - 1);
-    }
+  function handleChangeCheckbox(id: number) {
+    const taskDone = tasks.map((task) => {
+      if(task.id == id) {
+        return {
+          ...task,
+          done: !task.done
+        }
+      } else {
+        return task;
+      }
+    })
+
+    setTasks(taskDone)
   }
+
+  const doneTasks = tasks.filter((task) => task.done).length
 
   return (
     <>
@@ -79,7 +88,7 @@ export function TaskList() {
 
             <div className={styles.tasksDone}>
               <strong>Concluídas</strong>
-              <span className={styles.counter}>{done} de {tasks.length}</span>
+              <span className={styles.counter}>{doneTasks} de {tasks.length}</span>
             </div>
           </header>
           
